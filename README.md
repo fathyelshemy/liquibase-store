@@ -1,5 +1,5 @@
 # Getting Started
-this is liquibase sample project to demo ideals of rollback
+this is liquibase sample project to demo ideas for rollback
 ## Main Target for this repo is to practice on liquibase 
 
 #### setup project 
@@ -10,12 +10,13 @@ to run the project you must install the following
 - install [liquibase](https://www.liquibase.com/download)
 
 #### rollback feature
-
+automatic rollback is not support for sql, it's support only for agnostic language model (XML, YAML, JSON) for more
+info check [automatic and custom rollback](https://docs.liquibase.com/workflows/liquibase-community/automatic-custom-rollbacks.html)
 ###### - What's rollback? 
 rollback if a feature that's can undo your applied change from database it has set of use-case like
 * revert  not ready changes from pushing  production 
 ###### - How to apply setup rollback?
-on
+
 
 liquibase provide us 3 ways to rollback set of changes 
 
