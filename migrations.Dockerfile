@@ -1,5 +1,5 @@
-FROM liquibase/liquibase:4.9
+FROM liquibase/liquibase
 
-COPY ./src/main/resources/dbmigrations /liquibase/changelog
+COPY ./src/main/resources/db /liquibase/migrations
 
-CMD ["sh", "-c", "docker-entrypoint.sh --url=${URL} --contexts=${CONTEXTS} --username=${USERNAME} --password=${PASSWORD} --classpath=/liquibase/changelog --changeLogFile=changelog.xml --logLevel=FINE tag ${gitTag} && docker-entrypoint.sh --url=${URL} --contexts=${CONTEXTS} --username=${USERNAME} --password=${PASSWORD} --classpath=/liquibase/changelog --changeLogFile=changelog.xml --logLevel=FINE update"]
+CMD ["sh", "-c", " docker-entrypoint.sh --url=${URL} --contexts=${CONTEXTS} --username=${USERNAME} --password=${PASSWORD} --classpath=/liquibase/migrations --changeLogFile=changelog.xml --logLevel=fine update && docker-entrypoint.sh --url=${URL} --contexts=${CONTEXTS} --username=${USERNAME} --password=${PASSWORD} --classpath=/liquibase/migrations --changeLogFile=changelog.xml --logLevel=FINE tag ${gitTag} "]
