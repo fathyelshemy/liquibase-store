@@ -63,10 +63,10 @@ we prepare 2 docker files for update & rollback liquibase scripts
         - use  docker image we built it before to apply update & tag command using
       ```
       docker run --rm --name liquibase_store_image \
-      --network liquibase_experiment -e URL=jdbc:postgresql://d360_postgres:5432/liquibasestore \
+      --network liquibase_experiment -e URL=jdbc:postgresql://docker_postgres:5432/liquibasestore \
       -e CONTEXTS=prod \
       -e USERNAME=postgres \
-      -e PASSWORD=silic0n \
+      -e PASSWORD=<PASSWORD> \
       -e gitTag=1.1.1_dev liquibase_store_image
       ```
         - after successful run we should check ```databasechangelog```  table we'll find notice ```tag``` column you'll find entered tag by cmd on the latest row
@@ -88,10 +88,10 @@ we prepare 2 docker files for update & rollback liquibase scripts
     - run docker image again with different ```gitTag``` e.g ```1.1.2.dev``` like
   ```
       docker run --rm --name liquibase_store_image \
-      --network liquibase_experiment -e URL=jdbc:postgresql://d360_postgres:5432/liquibasestore \
+      --network liquibase_experiment -e URL=jdbc:postgresql://docker_postgres:5432/liquibasestore \
       -e CONTEXTS=prod \
       -e USERNAME=postgres \
-      -e PASSWORD=silic0n \
+      -e PASSWORD=<PASSWORD> \
       -e gitTag=1.1.2_dev liquibase_store_image
   ```
     - then check  ```databasechangelog```  table to see changes on it and confirm from tag column
@@ -109,10 +109,10 @@ for rollback scenario we should run the following command
 - use built image to run rollback scenario using
 ```
  docker run --rm --name liquibase_store_rollack_image \                                                                                           5s  18:57:43
---network liquibase_experiment -e URL=jdbc:postgresql://d360_postgres:5432/liquibasestore \
+--network liquibase_experiment -e URL=jdbc:postgresql://docker_postgres:5432/liquibasestore \
 -e CONTEXTS=prod \
 -e USERNAME=postgres \
--e PASSWORD=silic0n \
+-e PASSWORD=<PASSWORD> \
 -e gitTag=1.1.1_dev liquibase_store_rollack_image
 ```
 - then check  ```databasechangelog```  table to see changes on it and confirm from tag column we should notice that 3rd row is remove and our database back 1 step
